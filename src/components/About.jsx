@@ -11,7 +11,7 @@ const aboutSection=[
 
 export function About(){
     return(
-        <div className="p-6 mt-0 bg-base-300 md:mb-32 ">
+        <div className="p-6 mt-0 bg-base-300 md:mb-32 text-gray-600 ">
             <Title titre="About"/>
             <div className="flex items-center justify-center md:h-screen">
                 <div className="hidden md:block">

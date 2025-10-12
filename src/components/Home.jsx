@@ -23,7 +23,7 @@ export function Home(){
 
             </div>
             <div className="md:ml-60">
-                <img src={myImg} alt="" className="object-cover border-8 shadow-xl border-secondary w-96 h-96 " style={{borderRadius:"10% 30% 50% 50% /10% 60% 50% 80% "}}/>
+                <img src={myImg} alt="" className="object-cover border-8 shadow-xl border-secondary w-96 h-auto " style={{borderRadius:"10% 30% 50% 50% /10% 60% 50% 80% "}}/>
             </div>
         </div>
     )

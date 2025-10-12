@@ -26,13 +26,13 @@ export function Experience(){
         <div className="flex flex-col ">
             <Title titre="Experience"/>
             <div>
-                <h2 className="text-2xl text-gray-800 mb-8 border-l-4 pl-4 border-secondary ">Technical Skills</h2>
+                <h2 className="text-2xl text-white text-font-semibold mb-8 border-l-4 pl-4 border-secondary ">Technical Skills</h2>
                 <div className="flex items-center justify-center md:mt-2 ">
                 <div className=" md:grid md:grid-cols-3  flex flex-col gap-4 justify-center  ">
                     {skillsTecnical.map((skil)=>(
-                        <div className="flex flex-row-reverse bg-base-300 shadow-xl w-fill  rounded-xl p-2 h-fill gap-4 justify-center  items-center ">
+                        <div className="flex flex-row-reverse bg-base-300  shadow-xl w-fill  rounded-xl p-2 h-fill gap-4 justify-center  items-center ">
                            
-                            <div className=" ">
+                            <div className="text-gray-700 ">
                                 <h2 className=" text-md font-semibold mb-1 md:text-left">{skil.name}</h2>
                                 <p className="text-sm ">{skil.description}</p>
                             </div>
@@ -48,7 +48,7 @@ export function Experience(){
             </div>
             </div>
             <div className="mt-12 " >
-                 <h2 className="text-2xl text-gray-800 mb-8 border-l-4 pl-4 border-secondary ">Core skills</h2>
+                 <h2 className="text-2xl text-font-semibold text-white mb-8 border-l-4 pl-4 border-secondary ">Core skills</h2>
                  <div className="flex justify-start ml-10   w-full   ">
                     <ul className="grid sm:grid-cols-2 gap-3   p-5 ">
                       <li className=" bg-base-400 shadow-sm p-4 rounded-2xl border border-gray hover:shadow-md transition"  >

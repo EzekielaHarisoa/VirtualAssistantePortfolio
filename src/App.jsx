@@ -7,7 +7,7 @@ function App() {
 
 
   return (
-      <div >
+      <div className="bg-gradient-to-b from-pink-300  via-pink-5000 to-pink-400 text-white">
       <div className="p-5 md:px-[15%]">
         <Navbar/>
         <Home/>
