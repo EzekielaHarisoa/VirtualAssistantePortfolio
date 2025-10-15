@@ -1,80 +1,76 @@
-import { Title } from "./Title"; 
-import ImgSearch from "../assets/skills/ImgSearch.png"
-import ImgMS from "../assets/skills/ImgMS.png"
-import ImgSMM from "../assets/skills/ImgSMM.png"
-import ImgMail from "../assets/skills/ImgMail.png"
-import ImgEdit from "../assets/skills/ImgEdit.png"
-import ImgCanva from "../assets/skills/ImgCanva.png"
-import ImgService from "../assets/skills/ImgService.png"
-import ImgSchedul from "../assets/skills/ImgSchedul.png"
-import ImgCommunication from "../assets/skills/ImgCommunication.png"
+import Title from "./Title.jsx";
+import ImgSearch from "../assets/skills/ImgSearch.png";
+import ImgMS from "../assets/skills/ImgMS.png";
+import ImgSMM from "../assets/skills/ImgSMM.png";
+import ImgMail from "../assets/skills/ImgMail.png";
+import ImgEdit from "../assets/skills/ImgEdit.png";
+import ImgCanva from "../assets/skills/ImgCanva.png";
+import ImgService from "../assets/skills/ImgService.png";
+import ImgSchedul from "../assets/skills/ImgSchedul.png";
+import ImgCommunication from "../assets/skills/ImgCommunication.png";
 
-const skillsTecnical=[
-    {id:1, name:"Seach in internet",description:"" ,image:ImgSearch},
-    {id:2, name:"Microsoft office tools",description:"Microsoft Word, Excel, PowerPoint" , image:ImgMS},
-    {id:3, name:"Social media management",description:"Content creation , Scheduling post" , image:ImgSMM},
-    {id:4, name:"Email manager", description:"Gmail, Outlook - Filtering, organizing, responding" ,image:ImgMail},
-    {id:5, name:"Writting & Editing",description:"professional email, reports, blogs posts" , image:ImgEdit},
-    {id:6, name:"Design basics", description:" using Canva for visual and brandling" ,image:ImgCanva},
-    {id:7, name:"Customer servie",description:"Chat or email support " , image:ImgService},
-    {id:8, name:"Scheduling & planning", description:"Google Calendar, Trello, Notion" ,image:ImgSchedul},
-    {id:9, name:"Communication tools", description:"Zoom, whatsapp , Slack , Google meet" ,image:ImgCommunication},
+const skillsTechnical = [
+  { id: 1, name: "Internet Research", description: "", image: ImgSearch },
+  { id: 2, name: "Microsoft Office", description: "Word, Excel, PowerPoint", image: ImgMS },
+  { id: 3, name: "Social Media Mgmt", description: "Content creation, scheduling posts", image: ImgSMM },
+  { id: 4, name: "Email Management", description: "Gmail, Outlook - organizing & responding", image: ImgMail },
+  { id: 5, name: "Writing & Editing", description: "Professional emails, reports, blog posts", image: ImgEdit },
+  { id: 6, name: "Design Basics", description: "Using Canva for visuals & branding", image: ImgCanva },
+  { id: 7, name: "Customer Service", description: "Chat or email support", image: ImgService },
+  { id: 8, name: "Scheduling & Planning", description: "Google Calendar, Trello, Notion", image: ImgSchedul },
+  { id: 9, name: "Communication Tools", description: "Zoom, WhatsApp, Slack, Google Meet", image: ImgCommunication },
+];
 
-]
-const skillsCore=[
-    {id:1, content:"Exelent written and verbal communication" ,},
-    {id:2, content:"Strong organization in multitasking" },
-    {id:3, content:"Confidentiality and professionalism"},
-    {id:4, content:"Time management and ability to meet deadlines" },
-    {id:5, content:"Self-motivated and able to work independantly" },
-    {id:6, content:"Quick learner and adaptable to new tools or systems"},
+const skillsCore = [
+  { id: 1, content: "Excellent written and verbal communication" },
+  { id: 2, content: "Strong organization in multitasking" },
+  { id: 3, content: "Confidentiality and professionalism" },
+  { id: 4, content: "Time management & meeting deadlines" },
+  { id: 5, content: "Self-motivated & independent" },
+  { id: 6, content: "Quick learner & adaptable" },
+];
 
-]
-export function Skills(){
-    return(
-        <div className="flex flex-col  ">
-            <Title titre="Skills"/>
-            <div>
-                <h2 className="text-2xl text-white text-font-semibold mb-8 border-l-4 pl-4 border-pink-500 ">Technical Skills</h2>
-                <div className="flex items-center justify-center md:mt-2 ">
-                <div className=" md:grid md:grid-cols-3 flex flex-col gap-1 justify-center  ">
-                    {skillsTecnical.map((skil)=>(
-                        <div className="flex flex-row-reverse bg-pink-200  shadow-sm w-fill  rounded-sm p-2 h-fill  gap-4 justify-center  items-center ">
-                           
-                            <div className="text-white ">
-                                <h2 className=" text-md font-semibold mb-1 md:text-left">{skil.name}</h2>
-                                <p className="text-sm ">{skil.description}</p>
-                            </div>
-                           
-                            <div className="w-10 h-10 p-2 rounded-full flex items-center justify-center ">
-                                   <img className="object-cover w-ull h-full runded-full" src={skil.image} alt="" />
+export default function Skills() {
+  return (
+    <section className="py-16  text-gray-800 ">
+      <div className="container mx-auto px-6 md:px-20">
+        <Title titre="Skills" />
 
-                            </div>
-                        </div>
-                    ))}
-                </div>
-               
+        {/* --- Technical Skills --- */}
+        <h2 className="text-2xl font-semibold text-pink-500 mb-6 border-l-4 border-pink-500 pl-4">
+          Technical Skills
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {skillsTechnical.map((skill) => (
+            <div
+              key={skill.id}
+              className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-md hover:shadow-pink-200 transition-shadow duration-300"
+            >
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center">
+                <img
+                  src={skill.image}
+                  alt={skill.name}
+                  className="w-10 h-10 object-cover rounded-full"
+                />
+              </div>
+              <div>
+                <h3 className="text-md font-semibold text-pink-600">{skill.name}</h3>
+                <p className="text-sm text-gray-700">{skill.description}</p>
+              </div>
             </div>
-            </div>
-            <div className="mt-6 " >
-                 <h2 className="text-2xl text-font-semibold text-white  mb-3 border-l-4 pl-4 border-pink-500 ">Core skills</h2>
-                    <div className="   flex flex-col  gap-1 justify-start items-start  ml-10">
-                    {skillsCore.map((skil)=>(
-                        <div className="    ">
-                           
-                            <div className="text-white  text-pretty">
-                                <li className="text-bold  items-start text- text-center ">{skil.content}</li>
-                            </div>
-                           
-      
-                        </div>
-                    ))}
-                </div>
-
-
-
-            </div>
-            <div></div>
+          ))}
         </div>
-    )
+
+        {/* --- Core Skills --- */}
+        <h2 className="text-2xl font-semibold text-pink-500 mt-12 mb-4 border-l-4 border-pink-500 pl-4">
+          Core Skills
+        </h2>
+        <ul className="list-disc list-inside space-y-2 ml-4 text-gray-700">
+          {skillsCore.map((skill) => (
+            <li key={skill.id}>{skill.content}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
 }

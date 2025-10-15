@@ -1,121 +1,94 @@
+import { useEffect, useState, useRef } from "react";
+import { Laptop, Rocket, Mail, Star } from "lucide-react";
+import Title from "./Title.jsx";
 
-import { Title } from "./Title";
+const experiences = [
+  {
+    year: "2022",
+    title: "Administrative Assistant",
+    description:
+      "Planning organization, document management, and project follow-up to ensure activities run smoothly.",
+    icon: <Laptop className="w-6 h-6 text-white" />,
+  },
+  {
+    year: "2023",
+    title: "AI Data Annotation",
+    description:
+      "Annotating and organizing data for training and improving AI models with precision and quality.",
+    icon: <Star className="w-6 h-6 text-white" />,
+  },
+  {
+    year: "2024",
+    title: "Social Media Management",
+    description:
+      "Managing content creation, community engagement, and social media animation.",
+    icon: <Rocket className="w-6 h-6 text-white" />,
+  },
+  {
+    year: "2025",
+    title: "Virtual Assistant",
+    description:
+      "Remote support with emails, scheduling, coordination, and operational tasks.",
+    icon: <Mail className="w-6 h-6 text-white" />,
+  },
+];
 
+export default function Experience() {
+  const [visibleIdx, setVisibleIdx] = useState(-1);
+  const containerRef = useRef(null);
 
-export function Experience(){
-   return (
-    <div className="flex flex-col items-center justify-center  py-16 gap-4">
-      <Title titre={"Experience"}/>
-      <div className="relative w-full max-w-4xl bg-pink-200  mt-10  rounded-xl pt-6 px-4">
-        {/* Ligne verticale */}
-        <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-pink-500 hidden md:block"></div>
+  useEffect(() => {
+    const items = containerRef.current.querySelectorAll(".experience-card");
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = parseInt(entry.target.dataset.idx);
+            let i = 0;
+            const interval = setInterval(() => {
+              setVisibleIdx(i);
+              i++;
+              if (i > idx) clearInterval(interval);
+            }, 300);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
 
-        {/* STEP 1 */}
-        <div className="flex flex-col md:flex-row items-center md:justify-between mb-16 relative">
-          <div className="order-2 md:order-1 md:w-1/2 text-center md:text-right px-4">
-            <h3 className="text-2xl font-bold text-pink-500">Administrative Assistant</h3>
-            <p className=" opacity-80 text-sm text-white mr-5">
-              Planing organisation,document management ,
-              and project follow-up to ensure activities run smooth    
-                          </p>
-          </div>
+    items.forEach((item) => observer.observe(item));
+  }, []);
 
-          <div className="order-1 md:order-2 md:w-1/2 flex justify-center md:justify-start">
-            <div className="relative">
-              <div className=" bg-pink-500 rotate-45 w-24 h-24 rounded-lg"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-base-100 w-20 h-20 rotate-45 rounded-lg flex items-center justify-center shadow-md">
-                  <span className="font-bold text-xl text-pink-500">2022</span>
-                </div>
+  return (
+    <section className="py-16 px-4 md:px-20 overflow-hidden flex  flex-col gap-16 ">
+      <Title titre="Experiences" />
+      <ul
+        ref={containerRef}
+        className="steps steps-vertical md:steps-horizontal gap-10 mt-10 min-w-[800px]"
+      >
+        {experiences.map((exp, idx) => (
+          <li
+            key={idx}
+            data-idx={idx}
+            className={`experience-card step step-pink-500 relative flex flex-col items-center md:items-start bg-gradient-to-br from-pink-50 to-pink-300 rounded-xl shadow-xl p-4 transform transition-all duration-700
+              ${idx <= visibleIdx ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
+            <div className="flex items-center gap-4">
+              <div className="bg-pink-500 p-3 rounded-full shadow-lg animate-bounce">
+                {exp.icon}
               </div>
-              <div className="absolute right-[-1.5rem] top-1/2 -translate-y-1/2 hidden md:block">
-                <div className="w-8 h-1 bg-pink-500"> </div>
-                <div className="w-3 h-3 bg-pink-500 rounded-full mt-[-2px]"></div>
+              <div>
+                <span className="font-bold text-white text-lg">{exp.year}</span>
+                <h3 className="text-pink-500 font-bold text-xl">{exp.title}</h3>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* STEP 2 */}
-        <div className="flex flex-col md:flex-row items-center md:justify-between  mb-16  relative">
-          <div className="order-2 md:order-2 md:w-1/2 text-center md:text-left px-4">
-            <h3 className="text-2xl font-bold text-pink-500">AI Data Annotation</h3>
-            <p className="  text-white text-sm text-bold md:ml-5">
-             
-               Annotating and organizing data for training and improving artificial intelligence models, with precision and quality  
-
-        </p>
-          </div>
-
-          <div className="order-1 md:order-1 md:w-1/2 flex justify-center md:justify-end">
-            <div className="relative">
-              <div className="bg-pink-500 rotate-45 w-24 h-24 rounded-lg"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-base-100 w-20 h-20 rotate-45 rounded-lg flex items-center justify-center shadow-md">
-                  <span className="font-bold text-xl text-pink-500">2023</span>
-                </div>
-              </div>
-              <div className="absolute left-[-1.5rem] top-1/2 -translate-y-1/2 hidden md:block">
-                <div className="w-8 h-1 bg-pink-500"></div>
-                <div className="w-3 h-3 bg-pink-500 rounded-full mt-[-2px]"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        {/* STEP 3 */}
-        <div className="flex flex-col md:flex-row items-center md:justify-between mb-16 relative">
-          <div className="order-2 md:order-1 md:w-1/2 text-center md:text-right px-4">
-            <h3 className="text-2xl font-bold text-pink-500"> Social Media Management</h3>
-            <p className=" opacity-80 text-sm md:mr-5 text-white">
-             Managging and animating, content creation, community manager 
+            <p className="text-gray-500 mt-3 text-sm text-center md:text-left">
+              {exp.description}
             </p>
-          </div>
-
-          <div className="order-1 md:order-2 md:w-1/2 flex justify-center md:justify-start">
-            <div className="relative">
-              <div className=" bg-pink-500 rotate-45 w-24 h-24 rounded-lg"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-base-100 w-20 h-20 rotate-45 rounded-lg flex items-center justify-center shadow-md">
-                  <span className="font-bold text-xl text-pink-500">2024</span>
-                </div>
-              </div>
-              <div className="absolute right-[-1.5rem] top-1/2 -translate-y-1/2 hidden md:block">
-                <div className="w-8 h-1 bg-pink-500"> </div>
-                <div className="w-3 h-3 bg-pink-500 rounded-full mt-[-2px]"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-       {/* STEP 4 */}
-        <div className="flex flex-col md:flex-row items-center md:justify-between  mb-16  relative">
-          <div className="order-2 md:order-2 md:w-1/2 text-center md:text-left px-4">
-            <h3 className="text-2xl font-bold text-pink-500">Virtual Assistant</h3>
-            <p className="  text-white md:ml-5 text-sm text-bold">
-               Remote support with emails, shceduling, coordination, and operational tasks   
-                         </p>
-          </div>
-
-          <div className="order-1 md:order-1 md:w-1/2 flex justify-center md:justify-end">
-            <div className="relative">
-              <div className="bg-pink-500 rotate-45 w-24 h-24 rounded-lg"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-base-100 w-20 h-20 rotate-45 rounded-lg flex items-center justify-center shadow-md">
-                  <span className="font-bold text-xl text-pink-500">2025</span>
-                </div>
-              </div>
-              <div className="absolute left-[-1.5rem] top-1/2 -translate-y-1/2 hidden md:block">
-                <div className="w-8 h-1 bg-pink-500"></div>
-                <div className="w-3 h-3 bg-pink-500 rounded-full mt-[-2px]"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-      </div>
-    </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
