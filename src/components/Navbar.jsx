@@ -7,7 +7,7 @@ export function Navbar(){
                 <Heart className="text-pink-500 mr-2"/> 
                 Alexandra <hr /><span className="text-pink-500"> Frelancer</span>
             </a>
-            <ul className="hidden text-gray-600 md:flex space-x-4 ">
+            <ul className="hidden text-white md:flex space-x-4 ">
                <li className="btn  btn-ghost btn-sm">Acceuil</li>
                <li className="btn  btn-ghost btn-sm">Apropos</li>
                <li className="btn   btn-ghost btn-sm">Skills</li>

@@ -18,10 +18,11 @@ function App() {
       <div className="p-4 md:px-[15%]">
         <Skills/>
       </div>
-      <div className="p-4 md:px-[15%]">
+      <div className="p-4 md:px-[15%] ">
          <Experience/>
       </div>
-        <Contact/>
+         <Contact/>
+    
       </div>
 
 

@@ -27,21 +27,21 @@ const skillsCore=[
     {id:3, content:"Confidentiality and professionalism"},
     {id:4, content:"Time management and ability to meet deadlines" },
     {id:5, content:"Self-motivated and able to work independantly" },
-    {id:6, content:"Quick-motivated and able to work independantly"},
+    {id:6, content:"Quick learner and adaptable to new tools or systems"},
 
 ]
 export function Skills(){
     return(
-        <div className="flex flex-col ">
+        <div className="flex flex-col  ">
             <Title titre="Skills"/>
             <div>
                 <h2 className="text-2xl text-white text-font-semibold mb-8 border-l-4 pl-4 border-pink-500 ">Technical Skills</h2>
                 <div className="flex items-center justify-center md:mt-2 ">
-                <div className=" md:grid md:grid-cols-3  flex flex-col gap-4 justify-center  ">
+                <div className=" md:grid md:grid-cols-3 flex flex-col gap-1 justify-center  ">
                     {skillsTecnical.map((skil)=>(
-                        <div className="flex flex-row-reverse bg-base-200  shadow-xl w-fill  rounded-xl p-2 h-fill gap-4 justify-center  items-center ">
+                        <div className="flex flex-row-reverse bg-pink-200  shadow-sm w-fill  rounded-sm p-2 h-fill  gap-4 justify-center  items-center ">
                            
-                            <div className="text-gray-500 ">
+                            <div className="text-white ">
                                 <h2 className=" text-md font-semibold mb-1 md:text-left">{skil.name}</h2>
                                 <p className="text-sm ">{skil.description}</p>
                             </div>
@@ -56,14 +56,14 @@ export function Skills(){
                
             </div>
             </div>
-            <div className="mt-12 " >
-                 <h2 className="text-2xl text-font-semibold text-white mb-8 border-l-4 pl-4 border-pink-500 ">Core skills</h2>
-                    <div className=" md:grid md:grid-cols-3  flex flex-col gap-4 justify-center  ">
+            <div className="mt-6 " >
+                 <h2 className="text-2xl text-font-semibold text-white  mb-3 border-l-4 pl-4 border-pink-500 ">Core skills</h2>
+                    <div className="   flex flex-col  gap-1 justify-start items-start  ml-10">
                     {skillsCore.map((skil)=>(
-                        <div className="flex flex-row-reverse bg-base-200  border-l-4 border-white  shadow-xl w-fill h-16  rounded-xl p-2 h-fill gap-4 justify-center  items-center ">
+                        <div className="    ">
                            
-                            <div className="text-gray-500 ">
-                                <p className="text-bold  items-start text-sm text-center ">{skil.content}</p>
+                            <div className="text-white  text-pretty">
+                                <li className="text-bold  items-start text- text-center ">{skil.content}</li>
                             </div>
                            
       
