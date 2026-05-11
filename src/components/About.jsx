@@ -1,58 +1,58 @@
-import { Laptop, LetterText, Rocket } from "lucide-react";
-import Title from "./Title.jsx";
-import myImg from "../assets/mimi2.png";
-
-const aboutSection = [
-  {
-    id: 1,
-    title: "Virtual Assistant",
-    description: "I’m a dedicated virtual assistant helping you stay organized and efficient.",
-    icon: <Laptop className="w-8 h-8 text-pink-500" />,
-  },
-  {
-    id: 2,
-    title: "Translator",
-    description: "I translate fluently between French and English with precision and clarity.",
-    icon: <LetterText className="w-8 h-8 text-pink-500" />,
-  },
-  {
-    id: 3,
-    title: "Writer",
-    description: "I create captivating and well-written content in both French and English.",
-    icon: <Rocket className="w-8 h-8 text-pink-500" />,
-  },
-];
-
 export default function About() {
   return (
-    <section className="py-16 bg-gradient-to-r text-gray-800 ">
-      <div className="container mx-auto px-6 md:px-20 gap-6">
-        <Title titre="About Me" />
+    <section className="grid lg:grid-cols-2 gap-16 py-20 items-center">
+      <div className="space-y-8">
+        <div className="relative">
+          <img
+            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop"
+            alt="about"
+            className="rounded-[40px] h-[350px] w-full object-cover"
+          />
 
-        <div className="flex flex-col-reverse items-center  mb-10 gap-10 md:flex-row md:justify-between">
-          {/* Image */}
-          <div className="md:w-1/2 hidden md:flex justify-center">
-            <img
-              src={myImg}
-              alt="About Alexandra"
-              className="rounded-[2rem] w-80 h-auto object-cover border-8 border-pink-400 shadow-lg shadow-pink-200"
-            />
+          <div className="absolute bottom-6 left-6 bg-rose-600 text-white p-6 rounded-3xl shadow-xl">
+            <h3 className="text-4xl font-bold">3+</h3>
+            <p>Années d'expérience</p>
+          </div>
+        </div>
+
+        <img
+          src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200&auto=format&fit=crop"
+          alt="desk"
+          className="rounded-[40px] h-[300px] w-full object-cover"
+        />
+      </div>
+
+      <div>
+        <p className="uppercase tracking-[5px] text-sm text-rose-400 mb-4">
+          À propos de moi
+        </p>
+
+        <h2 className="text-5xl font-bold leading-tight mb-8">
+          Organisée, fiable et dévouée à votre réussite
+        </h2>
+
+        <p className="text-gray-600 leading-8 mb-6">
+          Passionnée par l'organisation, la communication et le support
+          administratif, j'accompagne les entrepreneurs et les équipes dans
+          l'optimisation de leur quotidien.
+        </p>
+
+        <p className="text-gray-600 leading-8 mb-10">
+          Mon objectif est simple : vous faire gagner du temps et vous offrir
+          une tranquillité d'esprit en gérant efficacement vos tâches.
+        </p>
+
+        <div className="flex flex-wrap gap-4">
+          <div className="bg-white border border-pink-100 px-5 py-3 rounded-2xl">
+            Discrétion & Confidentialité
           </div>
 
-          {/* Description cards */}
-          <div className="flex flex-col gap-6 md:w-1/2">
-            {aboutSection.map((sec) => (
-              <div
-                key={sec.id}
-                className="flex items-center gap-4 bg-white/80 backdrop-blur-md rounded-2xl p-5 shadow-md hover:shadow-pink-200 transition-shadow duration-300"
-              >
-                <div className="flex-shrink-0">{sec.icon}</div>
-                <div>
-                  <h2 className="text-lg font-semibold text-pink-600">{sec.title}</h2>
-                  <p className="text-sm text-gray-700">{sec.description}</p>
-                </div>
-              </div>
-            ))}
+          <div className="bg-white border border-pink-100 px-5 py-3 rounded-2xl">
+            Organisation & Rigueur
+          </div>
+
+          <div className="bg-white border border-pink-100 px-5 py-3 rounded-2xl">
+            Communication claire
           </div>
         </div>
       </div>
