@@ -9,10 +9,9 @@ import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 export default function Home() {
   return (
-    <div className="bg-[#fff8f8] overflow-hidden">
+    <div className="bg-[#fff8f8] overflow-fixed">
       <Navbar />
       <Hero />
-
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Services />
         <About />
@@ -20,7 +19,6 @@ export default function Home() {
         <Testimonials />
         <Projects />
       </div>
-
       <CTA />
       <Footer />
     </div>
