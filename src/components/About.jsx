@@ -33,11 +33,13 @@ export default function About() {
 
           {/* photo */}
           <div className="relative rounded-[36px] overflow-hidden shadow-[0_16px_48px_rgba(120,30,20,0.13)]">
-            <img
-              src={mimibien}
-              alt="Alexandra"
-              className="w-full h-[500px] object-cover object-top"
-            />
+           <div className="relative rounded-[36px] overflow-hidden shadow-[0_16px_48px_rgba(120,30px,20px,0.13)] h-full min-h-[520px]">
+              <img
+                src={mimibien}
+                alt="Alexandra"
+                className="w-full h-full object-cover object-top"
+              />
+           </div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#6b1e1e]/20 via-transparent to-transparent" />
           </div>
 
@@ -55,9 +57,6 @@ export default function About() {
             </div>
           </div>
 
-        
-
-          {/* Points décoratifs */}
           <div className="absolute -bottom-4 left-0 grid grid-cols-4 gap-[7px] opacity-40 pointer-events-none">
             {Array.from({ length: 16 }).map((_, i) => (
               <div key={i} className="w-[5px] h-[5px] rounded-full bg-[#c4837e]" />
@@ -83,7 +82,7 @@ export default function About() {
           </h2>
 
           {/* Séparateur */}
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-4">
             <div className="h-[2px] w-10 bg-gradient-to-r from-[#c0392b] to-[#e08070] rounded-full" />
             <div className="h-[2px] w-3 bg-[#e0c0b8] rounded-full" />
           </div>
@@ -98,7 +97,7 @@ export default function About() {
             une tranquillité d&apos;esprit en gérant efficacement vos tâches.
           </p>
 
-          <ul className="space-y-2.5 mb-10">
+          <ul className="space-y-2.5 mb-6">
             {checklist.map((item) => (
               <li key={item} className="flex items-center gap-2.5">
                 <CheckCircle2 size={15} className="text-[#c0392b] shrink-0" strokeWidth={2} />
@@ -108,7 +107,7 @@ export default function About() {
           </ul>
 
           {/* Traits / Pills */}
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-wrap gap-3 ">
             {traits.map(({ icon: Icon, label }) => (
               <div
                 key={label}
@@ -120,13 +119,7 @@ export default function About() {
             ))}
           </div>
 
-          {/* CTA */}
-          <button className="flex items-center gap-2 bg-[#c0392b] hover:bg-[#a93226] transition-colors text-white font-sans font-semibold text-[13.5px] px-7 py-3 rounded-xl border-0 cursor-pointer shadow-[0_6px_18px_rgba(180,50,30,0.25)]">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            Travaillons ensemble
-          </button>
+        
         </div>
 
       </div>

@@ -171,7 +171,7 @@ export default function Services() {
                   {service.desc}
                 </p>
 
-                {/* Lien discret */}
+                {/* Lien  */}
                 <div
                   className="flex items-center gap-1.5 mt-5 transition-all duration-200"
                   style={{ opacity: isHovered ? 1 : 0, transform: isHovered ? "translateX(0)" : "translateX(-6px)" }}
