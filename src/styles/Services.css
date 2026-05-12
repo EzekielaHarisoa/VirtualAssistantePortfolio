@@ -1,0 +1,296 @@
+ @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+        @keyframes sv-fadeUp    { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes sv-fadeRight { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes sv-cardIn    { from{opacity:0;transform:translateY(28px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+        @keyframes sv-shimmer   { 0%{background-position:-200% center}100%{background-position:200% center} }
+        @keyframes sv-blob      { 0%,100%{border-radius:60% 40% 50% 70%/50% 60% 40% 50%} 50%{border-radius:40% 60% 70% 30%/60% 40% 50% 50%} }
+        @keyframes sv-iconSpin  { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes sv-lineGrow  { from{width:0} to{width:100%} }
+
+        /* ── SECTION ── */
+        .sv-section {
+          position: relative;
+          background: #fdf5f0;
+          overflow: hidden;
+          padding: 64px 20px 72px;
+          box-sizing: border-box;
+        }
+
+        /* Blobs déco */
+        .sv-blob-tr {
+          position: absolute;
+          top: -60px; right: -80px;
+          width: 300px; height: 260px;
+          background: rgba(254,205,211,.45);
+          pointer-events: none;
+          animation: sv-blob 11s ease-in-out infinite;
+        }
+        .sv-blob-bl {
+          position: absolute;
+          bottom: -40px; left: -60px;
+          width: 240px; height: 210px;
+          background: rgba(253,230,138,.22);
+          pointer-events: none;
+          animation: sv-blob 14s ease-in-out infinite reverse;
+        }
+
+        /* ── HEADER ── */
+        .sv-header {
+          position: relative;
+          z-index: 1;
+          max-width: 1100px;
+          margin: 0 auto 48px;
+        }
+
+        .sv-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 16px;
+          opacity: 0;
+        }
+        .sv-section.visible .sv-eyebrow {
+          animation: sv-fadeRight .55s ease both .1s;
+        }
+        .sv-eyebrow-line {
+          width: 32px; height: 1.5px;
+          background: linear-gradient(90deg,#fda4af,#fb7185);
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+        .sv-eyebrow p {
+          font-family: sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #fb7185;
+          margin: 0;
+        }
+
+        .sv-heading-row {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 16px;
+          opacity: 0;
+        }
+        .sv-section.visible .sv-heading-row {
+          animation: sv-fadeUp .65s cubic-bezier(.22,1,.36,1) both .2s;
+        }
+
+        .sv-title {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: clamp(30px, 4vw, 42px);
+          font-weight: 700;
+          color: #6b1e1e;
+          line-height: 1.2;
+          margin: 0;
+        }
+        .sv-title em {
+          font-style: italic;
+          background: linear-gradient(90deg,#f43f5e 0%,#fb7185 50%,#f43f5e 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: sv-shimmer 5s linear infinite;
+        }
+
+        .sv-subtitle {
+          font-family: sans-serif;
+          font-size: 13.5px;
+          color: #8a6050;
+          max-width: 340px;
+          line-height: 1.75;
+          margin: 0;
+        }
+
+        .sv-divider {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 28px;
+          opacity: 0;
+        }
+        .sv-section.visible .sv-divider {
+          animation: sv-fadeUp .5s ease both .32s;
+        }
+        .sv-divider-a { height:2px; width:48px; background:linear-gradient(90deg,#c0392b,#e08070); border-radius:2px; }
+        .sv-divider-b { height:2px; width:16px; background:#e0c0b8; border-radius:2px; }
+        .sv-divider-c { height:2px; width:8px;  background:rgba(224,192,184,.5); border-radius:2px; }
+
+        /* ── GRID ── */
+        .sv-grid {
+          position: relative;
+          z-index: 1;
+          max-width: 1100px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        /* ── CARD ── */
+        .sv-card {
+          position: relative;
+          background: #fff;
+          border-radius: 24px;
+          padding: 24px;
+          border: 1px solid rgba(236,221,216,.8);
+          overflow: hidden;
+          cursor: default;
+          opacity: 0;
+          box-shadow: 0 2px 12px rgba(160,50,30,.05);
+          transition: transform .3s cubic-bezier(.22,1,.36,1),
+                      box-shadow .3s ease;
+          will-change: transform;
+        }
+
+        /* Stagger */
+        .sv-section.visible .sv-card:nth-child(1){ animation: sv-cardIn .55s cubic-bezier(.22,1,.36,1) both .38s }
+        .sv-section.visible .sv-card:nth-child(2){ animation: sv-cardIn .55s cubic-bezier(.22,1,.36,1) both .46s }
+        .sv-section.visible .sv-card:nth-child(3){ animation: sv-cardIn .55s cubic-bezier(.22,1,.36,1) both .54s }
+        .sv-section.visible .sv-card:nth-child(4){ animation: sv-cardIn .55s cubic-bezier(.22,1,.36,1) both .62s }
+        .sv-section.visible .sv-card:nth-child(5){ animation: sv-cardIn .55s cubic-bezier(.22,1,.36,1) both .70s }
+        .sv-section.visible .sv-card:nth-child(6){ animation: sv-cardIn .55s cubic-bezier(.22,1,.36,1) both .78s }
+
+        .sv-card:hover {
+          transform: translateY(-7px);
+          box-shadow: 0 18px 50px rgba(160,50,30,.13);
+        }
+
+        /* Fond coloré au hover */
+        .sv-card-bg {
+          position: absolute;
+          inset: 0;
+          border-radius: 24px;
+          opacity: 0;
+          transition: opacity .35s ease;
+          pointer-events: none;
+        }
+        .sv-card:hover .sv-card-bg { opacity: 1; }
+
+        /* Numéro */
+        .sv-card-num {
+          position: absolute;
+          top: 18px; right: 20px;
+          font-family: monospace;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          opacity: .14;
+          transition: opacity .25s ease;
+          pointer-events: none;
+        }
+        .sv-card:hover .sv-card-num { opacity: .35; }
+
+        /* Icône */
+        .sv-icon-wrap {
+          width: 48px; height: 48px;
+          border-radius: 16px;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 18px;
+          border-width: 1px;
+          border-style: solid;
+          transition: transform .35s cubic-bezier(.22,1,.36,1);
+          position: relative;
+          z-index: 1;
+        }
+        .sv-card:hover .sv-icon-wrap {
+          transform: scale(1.1) rotate(-4deg);
+        }
+
+        /* Tag */
+        .sv-tag {
+          display: inline-block;
+          font-family: sans-serif;
+          font-size: 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          padding: 4px 10px;
+          border-radius: 999px;
+          margin-bottom: 10px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .sv-card-title {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 19px;
+          font-weight: 700;
+          color: #5a1a1a;
+          line-height: 1.2;
+          margin: 0 0 8px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .sv-card-desc {
+          font-family: sans-serif;
+          font-size: 13px;
+          color: #8a6050;
+          line-height: 1.72;
+          margin: 0;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Lien  */
+        .sv-card-link {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 18px;
+          opacity: 0;
+          transform: translateX(-8px);
+          transition: opacity .25s ease, transform .25s ease;
+          position: relative;
+          z-index: 1;
+        }
+        .sv-card:hover .sv-card-link {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        .sv-card-link span {
+          font-family: sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+        }
+
+        /* Barre déco bas de carte */
+        .sv-card-bar {
+          position: absolute;
+          bottom: 0; left: 20px; right: 20px;
+          height: 2px;
+          border-radius: 999px;
+          opacity: 0;
+          transition: opacity .3s ease;
+          overflow: hidden;
+        }
+        .sv-card:hover .sv-card-bar { opacity: .5; }
+        .sv-card-bar-inner {
+          position: absolute;
+          inset: 0;
+          width: 0;
+          transition: width .5s ease .05s;
+        }
+        .sv-card:hover .sv-card-bar-inner { width: 100%; }
+
+        /* ── RESPONSIVE ── */
+        @media (min-width: 640px) {
+          .sv-section { padding: 80px 40px 88px; }
+          .sv-grid    { grid-template-columns: repeat(2,1fr); gap: 18px; }
+        }
+
+        @media (min-width: 1024px) {
+          .sv-section { padding: 96px 40px 104px; }
+          .sv-grid    { grid-template-columns: repeat(3,1fr); gap: 20px; }
+        }
+
+        @media (min-width: 1280px) {
+          .sv-header,
+          .sv-grid    { max-width: 1100px; }}

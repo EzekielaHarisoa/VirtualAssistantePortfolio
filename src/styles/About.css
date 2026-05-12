@@ -1,0 +1,358 @@
+ @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+        /* ── Keyframes ── */
+        @keyframes ab-fadeUp    { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes ab-fadeRight { from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes ab-fadeLeft  { from{opacity:0;transform:translateX(30px)}  to{opacity:1;transform:translateX(0)} }
+        @keyframes ab-scaleIn   { from{opacity:0;transform:scale(.92)}        to{opacity:1;transform:scale(1)} }
+        @keyframes ab-shimmer   { 0%{background-position:-200% center}100%{background-position:200% center} }
+        @keyframes ab-blob      { 0%,100%{border-radius:60% 40% 50% 70%/50% 60% 40% 50%} 50%{border-radius:40% 60% 70% 30%/60% 40% 50% 50%} }
+        @keyframes ab-float     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes ab-badgePop  { 0%{opacity:0;transform:scale(.8) translateX(12px)} 60%{transform:scale(1.05) translateX(-2px)} 100%{opacity:1;transform:scale(1) translateX(0)} }
+        @keyframes ab-dotFloat  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+        @keyframes ab-checkSlide{ from{opacity:0;transform:translateX(-16px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes ab-pillPop   { from{opacity:0;transform:scale(.85) translateY(8px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+        /* ── SECTION ── */
+        .ab-section {
+          position: relative;
+          background: #fdf5f0;
+          overflow: hidden;
+          padding: 64px 20px;
+          box-sizing: border-box;
+        }
+
+        /* Blob déco haut-gauche */
+        .ab-blob-tl {
+          position: absolute;
+          top: -60px; left: -70px;
+          width: 280px; height: 240px;
+          background: rgba(254,205,211,.45);
+          pointer-events: none;
+          animation: ab-blob 10s ease-in-out infinite;
+        }
+        /* Blob déco bas-droit */
+        .ab-blob-br {
+          position: absolute;
+          bottom: -50px; right: -60px;
+          width: 240px; height: 210px;
+          background: rgba(253,230,138,.25);
+          pointer-events: none;
+          animation: ab-blob 13s ease-in-out infinite reverse;
+        }
+
+        /* ── INNER GRID ── */
+        .ab-inner {
+          position: relative;
+          z-index: 1;
+          max-width: 1100px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          gap: 48px;
+        }
+
+        /* ══════════════════════════
+           COLONNE GAUCHE — Photo
+        ══════════════════════════ */
+        .ab-left {
+          position: relative;
+          opacity: 0;
+        }
+        .ab-section.visible .ab-left {
+          animation: ab-fadeRight .85s cubic-bezier(.22,1,.36,1) both .1s;
+        }
+
+        .ab-photo-frame {
+          position: relative;
+          border-radius: 32px;
+          overflow: hidden;
+          box-shadow: 0 20px 56px rgba(120,30,20,.14);
+          aspect-ratio: 3/4;
+          max-height: 520px;
+        }
+        .ab-photo-frame img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top;
+          display: block;
+          transition: transform .7s cubic-bezier(.22,1,.36,1);
+        }
+        .ab-photo-frame:hover img { transform: scale(1.04); }
+
+        /* Overlay dégradé photo */
+        .ab-photo-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(107,30,30,.18) 0%, transparent 55%);
+          pointer-events: none;
+        }
+
+        /* Badge expérience */
+        .ab-badge {
+          position: absolute;
+          bottom: 72px;
+          right: -16px;
+          background: #fff;
+          border-radius: 18px;
+          padding: 12px 18px;
+          border: 1px solid #ecddd8;
+          box-shadow: 0 8px 28px rgba(120,30,20,.13);
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          opacity: 0;
+          min-width: 150px;
+        }
+        .ab-section.visible .ab-badge {
+          animation: ab-badgePop .65s cubic-bezier(.22,1,.36,1) both .7s;
+        }
+        .ab-badge-icon {
+          width: 44px; height: 44px;
+          border-radius: 12px;
+          background: linear-gradient(135deg, #fb7185, #be123c);
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+        }
+        .ab-badge-icon span {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 20px;
+          font-weight: 700;
+          color: #fff;
+          line-height: 1;
+        }
+        .ab-badge-label-sub {
+          font-family: sans-serif;
+          font-size: 10.5px;
+          color: #a07060;
+          line-height: 1;
+          display: block;
+          margin-bottom: 3px;
+        }
+        .ab-badge-label-main {
+          font-family: sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          color: #6b1e1e;
+          line-height: 1;
+          display: block;
+        }
+
+        /* Grille de points */
+        .ab-dots {
+          position: absolute;
+          bottom: -16px; left: 0;
+          display: grid;
+          grid-template-columns: repeat(4, 6px);
+          gap: 6px;
+          opacity: 0;
+          pointer-events: none;
+        }
+        .ab-section.visible .ab-dots {
+          animation: ab-fadeUp .6s ease both 1s;
+        }
+        .ab-dot {
+          width: 5px; height: 5px;
+          border-radius: 50%;
+          background: #c4837e;
+          opacity: .4;
+          animation: ab-dotFloat 2.8s ease-in-out infinite;
+        }
+
+        /*
+           COLONNE DROITE
+       */
+        .ab-right {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        /* Eyebrow */
+        .ab-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 16px;
+          opacity: 0;
+        }
+        .ab-section.visible .ab-eyebrow {
+          animation: ab-fadeUp .55s ease both .25s;
+        }
+        .ab-eyebrow-line {
+          width: 32px; height: 1.5px;
+          background: linear-gradient(90deg,#fda4af,#fb7185);
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+        .ab-eyebrow p {
+          font-family: sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #fb7185;
+          margin: 0;
+        }
+
+        /* Titre */
+        .ab-title {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: clamp(28px, 4vw, 46px);
+          font-weight: 700;
+          color: #6b1e1e;
+          line-height: 1.15;
+          margin: 0 0 20px;
+          opacity: 0;
+        }
+        .ab-section.visible .ab-title {
+          animation: ab-fadeUp .7s cubic-bezier(.22,1,.36,1) both .35s;
+        }
+        .ab-title em {
+          font-style: italic;
+          background: linear-gradient(90deg,#f43f5e 0%,#fb7185 50%,#f43f5e 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: ab-shimmer 5s linear infinite;
+        }
+
+        /* Séparateur */
+        .ab-divider {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 18px;
+          opacity: 0;
+        }
+        .ab-section.visible .ab-divider {
+          animation: ab-fadeUp .5s ease both .45s;
+        }
+        .ab-divider-bar {
+          height: 2px; width: 40px;
+          background: linear-gradient(90deg,#c0392b,#e08070);
+          border-radius: 2px;
+        }
+        .ab-divider-dot {
+          height: 2px; width: 12px;
+          background: #e0c0b8;
+          border-radius: 2px;
+        }
+
+        /* Paragraphes */
+        .ab-para {
+          font-family: sans-serif;
+          font-size: 14px;
+          color: #8a6050;
+          line-height: 1.85;
+          margin: 0 0 14px;
+          opacity: 0;
+        }
+        .ab-section.visible .ab-para-1 { animation: ab-fadeUp .55s ease both .5s; }
+        .ab-section.visible .ab-para-2 { animation: ab-fadeUp .55s ease both .58s; }
+
+        /* Checklist */
+        .ab-checklist {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .ab-check-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          opacity: 0;
+        }
+        .ab-section.visible .ab-check-item:nth-child(1){ animation: ab-checkSlide .5s ease both .65s }
+        .ab-section.visible .ab-check-item:nth-child(2){ animation: ab-checkSlide .5s ease both .75s }
+        .ab-section.visible .ab-check-item:nth-child(3){ animation: ab-checkSlide .5s ease both .85s }
+        .ab-section.visible .ab-check-item:nth-child(4){ animation: ab-checkSlide .5s ease both .95s }
+
+        .ab-check-icon {
+          width: 20px; height: 20px;
+          border-radius: 50%;
+          background: rgba(192,57,43,.1);
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+          transition: background .2s ease, transform .2s ease;
+        }
+        .ab-check-item:hover .ab-check-icon {
+          background: rgba(192,57,43,.18);
+          transform: scale(1.12);
+        }
+        .ab-check-text {
+          font-family: sans-serif;
+          font-size: 13.5px;
+          color: #6b4040;
+          line-height: 1.5;
+        }
+
+        /* Pills / Traits */
+        .ab-pills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .ab-pill {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: #fff;
+          border: 1px solid #ecddd8;
+          padding: 10px 16px;
+          border-radius: 999px;
+          box-shadow: 0 2px 8px rgba(160,50,30,.06);
+          cursor: default;
+          opacity: 0;
+          transition: box-shadow .22s ease, transform .22s ease, background .22s ease;
+        }
+        .ab-section.visible .ab-pill:nth-child(1){ animation: ab-pillPop .5s cubic-bezier(.22,1,.36,1) both 1.0s }
+        .ab-section.visible .ab-pill:nth-child(2){ animation: ab-pillPop .5s cubic-bezier(.22,1,.36,1) both 1.1s }
+        .ab-section.visible .ab-pill:nth-child(3){ animation: ab-pillPop .5s cubic-bezier(.22,1,.36,1) both 1.2s }
+        .ab-pill:hover {
+          box-shadow: 0 6px 20px rgba(160,50,30,.13);
+          transform: translateY(-3px);
+          background: #fff8f6;
+        }
+        .ab-pill-icon { color: #c0392b; flex-shrink: 0; }
+        .ab-pill-label {
+          font-family: sans-serif;
+          font-size: 12.5px;
+          font-weight: 500;
+          color: #6b3030;
+          white-space: nowrap;
+        }
+
+        /* ══════════════════════════
+           RESPONSIVE
+        ══════════════════════════ */
+
+        /* Tablette ≥ 640px */
+        @media (min-width: 640px) {
+          .ab-section   { padding: 80px 40px; }
+          .ab-photo-frame { aspect-ratio: 4/3; max-height: 460px; }
+          .ab-badge     { right: -8px; bottom: 80px; }
+        }
+
+        /* Desktop ≥ 1024px */
+        @media (min-width: 1024px) {
+          .ab-section   { padding: 96px 40px; }
+          .ab-inner     { flex-direction: row; align-items: center; gap: 72px; }
+          .ab-left      { width: 44%; flex-shrink: 0; }
+          .ab-right     { flex: 1; }
+          .ab-photo-frame {
+            aspect-ratio: unset;
+            height: 580px;
+            max-height: unset;
+          }
+          .ab-badge     { right: -20px; bottom: 160px; }
+        }
+
+        @media (min-width: 1280px) {
+          .ab-inner { gap: 88px; }
+        }

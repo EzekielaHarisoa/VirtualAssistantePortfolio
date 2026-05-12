@@ -1,125 +1,112 @@
-import { ArrowRight, Download, Users, BriefcaseBusiness, Star } from "lucide-react";
-import mimiPhoto from "../assets/mimibien.jpeg"
+import { Download, Users, BriefcaseBusiness, Star } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import mimiPhoto from "../assets/mimibien.jpeg";
+import "../styles/Hero.css";
 const stats = [
-  { icon: Users,            value: "10+",  label: "Clients satisfaits"   },
-  { icon: BriefcaseBusiness, value: "3+",   label: "Années d'expérience"  },
-  { icon: Star,             value: "98%",  label: "Taux de satisfaction"  },
+  { icon: Users,             value: "10",  suffix: "+", label: "Clients satisfaits"  },
+  { icon: BriefcaseBusiness, value: "3",   suffix: "+", label: "Années d'expérience" },
+  { icon: Star,              value: "98",  suffix: "%", label: "Taux de satisfaction" },
 ];
+
+function useInView() {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, inView];
+}
+
+function AnimatedCounter({ target, suffix }) {
+  const [count, setCount] = useState(0);
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (!inView) return;
+    const n = parseInt(target, 10);
+    let frame = 0;
+    const total = 45;
+    const id = setInterval(() => {
+      frame++;
+      setCount(Math.round((frame / total) * n));
+      if (frame >= total) clearInterval(id);
+    }, 1000 / total);
+    return () => clearInterval(id);
+  }, [inView, target]);
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#fdf5f0] min-h-[580px]">
+    <>
+      <section id="accueil" className="h-section">
 
-      <div
-        className="absolute top-[-60px] left-[-80px] w-[340px] h-[320px] bg-[#f5c6bc]/50 pointer-events-none z-0"
-        style={{ borderRadius: "60% 40% 70% 30% / 50% 60% 40% 50%" }}
-      />
-
-      <div
-        className="absolute top-[38%] left-[44%] w-[28px] h-[44px] bg-[#f0b8b0]/70 pointer-events-none z-[1]"
-        style={{ borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }}
-      />
-
-      <div className="absolute top-[42%] left-[46%] grid grid-cols-4 gap-[7px] pointer-events-none z-[1] opacity-50">
-        {Array.from({ length: 16 }).map((_, i) => (
-          <div key={i} className="w-[5px] h-[5px] rounded-full bg-[#d4998a]" />
-        ))}
-      </div>
-
-  
-      <div
-        className="absolute top-0 right-0 h-full z-[2] overflow-hidden"
-        style={{
-          width: "48%",
-          borderRadius: "0 0 0 120px",
-        }}
-      >
-        <div className="absolute inset-0 " />
-        <img
-          src={mimiPhoto}
-          alt="Alexandra"
-          className="relative w-[94%] h-full object-cover object-top z-[1]  rounded-[150px_20px_20px_150px]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#fdf5f0]/30 via-transparent to-transparent z-[2]" />
-      </div>
-
-      <div className="relative z-10 w-[52%] px-10 lg:px-16 pt-12 pb-14">
-
-        <div className="inline-flex items-center gap-2 bg-white border border-[#e8d0c8] px-4 py-2 rounded-full shadow-sm mb-8">
-          <span className="w-2 h-2 rounded-full bg-[#4caf50] animate-pulse" />
-          <span className="font-sans text-[12px] text-[#7a5a50] font-medium">
-            Disponible pour de nouvelles missions
-          </span>
-        </div>
-
-        <p
-          className="text-[24px] text-[#c4837e] font-normal mb-1 leading-none"
-          style={{ fontFamily: "'Dancing Script', cursive" }}
-        >
-          Bonjour, je suis
-        </p>
-
-        <h1
-          className="text-[72px] font-bold text-[#872d2d] leading-[1] tracking-[-1px] mb-3"
-          style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-        >
-          Alexandra
-        </h1>
-
-        <h2
-          className="text-[22px] font-semibold text-[#b07540] leading-snug mb-5"
-          style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-        >
-          Virtual Assistant &amp; Digital Partner
-        </h2>
-
-        <p className="font-sans text-[14px] text-[#8a6050] leading-[1.75] mb-8 max-w-[400px]">
-          J&apos;aide les entrepreneurs et les entreprises à gagner du temps,<br />
-          à rester organisés et à se concentrer sur ce qui compte vraiment.
-        </p>
-
-        {/* Boutons */}
-        <div className="flex items-center gap-4 mb-10">
-          <button className="flex items-center gap-2 bg-rose-400 hover:bg-rose-500 transition-colors text-white font-sans font-semibold text-[13.5px] px-6 py-3 rounded-xl border-0 cursor-pointer shadow-[0_6px_18px_rgba(180,50,30,0.28)]">
-            <span className="text-[15px]">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </span>
-            Me contacter
-          </button>
-
-          <button className="flex items-center gap-2 bg-transparent hover:bg-[#f9eeea]   transition-colors text-rose-700 font-sans font-semibold text-[13.5px] px-6 py-3 rounded-xl border border-rose-60 cursor-pointer">
-            <Download size={14} />
-            Télécharger mon CV
-          </button>
-        </div>
-
-        {/* Stats*/}
-        <div className="flex gap-4">
-          {stats.map(({ icon: Icon, value, label }) => (
-            <div
-              key={label}
-              className="bg-white border border-[#ecddd8] rounded-2xl px-5 py-4 flex flex-row items-start gap-1 shadow-[0_2px_10px_rgba(160,60,40,0.06)] min-w-[120px]"
-            >            
-              <div className="w-9 h-9 rounded-xl bg-[#fdf0ec] border border-[#f0d4cc] flex  items-center justify-center mb-1">
-                <Icon size={16} className="text-rose-600" strokeWidth={1.5} />
-              </div>
-            
-              <span
-                className="text-[28px] font-bold text-[#8a6050] leading-none"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-              >
-                {value}
-              </span>
-              <span className="font-sans text-[11px] text-[#a07060] leading-tight">
-                {label}
-              </span>
-            </div>
+        <div className="h-blob" />
+        <div className="h-dots">
+          {Array.from({ length: 16 }).map((_, i) => (
+            <div key={i} className="h-dot" style={{ animationDelay: `${i * 0.1}s` }} />
           ))}
         </div>
 
-      </div>
-    </section>
+        {/* Photo */}
+        <div className="h-photo-wrap">
+          <img src={mimiPhoto} alt="Alexandra, Virtual Assistant"  />
+          <div className="h-photo-overlay" />
+        </div> 
+
+        {/* Contenu */}
+        <div className="h-content">
+
+          <div className="h-badge bg-rose-100/55">
+            <span className="h-badge-dot bg-rose-400" />
+            <span className="h-badge-text ">Disponible pour de nouvelles missions</span>
+          </div>
+
+          <p className="h-greeting">Bonjour, je suis</p>
+          <h1 className="h-name">Alexandra</h1>
+          <h2 className="h-subtitle">Virtual Assistant &amp; Digital Partner</h2>
+          <p className="h-desc">
+            J&apos;aide les entrepreneurs et les entreprises à gagner du temps,
+            à rester organisés et à se concentrer sur ce qui compte vraiment.
+          </p>
+
+          <div className="h-btns">
+            <button className="h-btn-primary">
+              <svg style={{ width: 17, height: 17, flexShrink: 0 }} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Me contacter
+            </button>
+            <button className="h-btn-secondary">
+              <Download size={14} />
+              Télécharger mon CV
+            </button>
+          </div>
+
+          <div className="h-stats">
+            {stats.map(({ icon: Icon, value, suffix, label }) => (
+              <div key={label} className="h-stat-card">
+                <div className="h-stat-icon">
+                  <Icon size={15} color="rgb(225 29 72)" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <div className="h-stat-value">
+                    <AnimatedCounter target={value} suffix={suffix} />
+                  </div>
+                  <div className="h-stat-label">{label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+    </>
   );
 }

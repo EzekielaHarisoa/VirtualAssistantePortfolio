@@ -1,0 +1,264 @@
+ @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+        @keyframes sk-fadeUp    { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes sk-fadeRight { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes sk-fadeLeft  { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes sk-scaleX    { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+        @keyframes sk-shimmer   {
+          0%  { background-position: -200% center }
+          100%{ background-position:  200% center }
+        }
+        @keyframes sk-float {
+          0%,100%{ transform: translateY(0) rotate(-2deg) }
+          50%    { transform: translateY(-8px) rotate(2deg) }
+        }
+
+        /* ── SECTION ── */
+        .sk-section {
+          background: #faf8f6;
+          padding: 64px 20px;
+          box-sizing: border-box;
+          overflow: hidden;
+          position: relative;
+        }
+
+        /* Blob décoratif */
+        .sk-blob {
+          position: absolute;
+          top: -80px; right: -80px;
+          width: 320px; height: 280px;
+          background: rgba(251,207,215,.28);
+          border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%;
+          pointer-events: none;
+          animation: sk-float 10s ease-in-out infinite;
+        }
+        .sk-blob-2 {
+          position: absolute;
+          bottom: -60px; left: -60px;
+          width: 220px; height: 200px;
+          background: rgba(254,226,213,.3);
+          border-radius: 40% 60% 45% 55% / 55% 45% 55% 45%;
+          pointer-events: none;
+          animation: sk-float 13s ease-in-out infinite reverse;
+        }
+
+        /* ── INNER ── */
+        .sk-inner {
+          max-width: 960px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* ── IMAGE ── */
+        .sk-img-wrap {
+          width: 100%;
+          border-radius: 24px;
+          overflow: hidden;
+          position: relative;
+          aspect-ratio: 4/3;
+          box-shadow: 0 16px 48px rgba(160,60,40,.12);
+        }
+        .sk-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform .6s ease;
+        }
+        .sk-img-wrap:hover img { transform: scale(1.04); }
+
+        /* Badge flottant sur la photo */
+        .sk-img-badge {
+          position: absolute;
+          bottom: 20px; left: 20px;
+          background: rgba(255,255,255,.92);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(244,63,94,.15);
+          border-radius: 14px;
+          padding: 10px 16px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          box-shadow: 0 4px 20px rgba(160,60,40,.12);
+        }
+        .sk-img-badge-icon {
+          width: 36px; height: 36px;
+          background: linear-gradient(135deg,#fb7185,#f43f5e);
+          border-radius: 10px;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 18px;
+          flex-shrink: 0;
+        }
+        .sk-img-badge-text strong {
+          display: block;
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 15px;
+          font-weight: 700;
+          color: #6b1e1e;
+          line-height: 1;
+        }
+        .sk-img-badge-text span {
+          font-family: sans-serif;
+          font-size: 11px;
+          color: #a07060;
+        }
+
+        /* ── RIGHT / CONTENT ── */
+        .sk-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        /* Eyebrow */
+        .sk-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 14px;
+        }
+        .sk-eyebrow-line {
+          width: 32px; height: 1.5px;
+          background: linear-gradient(90deg,#fda4af,#fb7185);
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+        .sk-eyebrow p {
+          font-family: sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #fb7185;
+          margin: 0;
+        }
+
+        /* Titre */
+        .sk-title {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: clamp(28px, 4vw, 44px);
+          font-weight: 700;
+          color: #6b1e1e;
+          line-height: 1.15;
+          margin: 0 0 28px;
+        }
+        .sk-title em {
+          font-style: italic;
+          background: linear-gradient(90deg,#f43f5e 0%,#fb7185 50%,#f43f5e 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: sk-shimmer 5s linear infinite;
+        }
+
+        /* ── SKILL BARS ── */
+        .sk-bars {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .sk-bar-row {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+
+        .sk-bar-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .sk-bar-name {
+          font-family: sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          color: #7a4a3a;
+        }
+        .sk-bar-pct {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 15px;
+          font-weight: 700;
+          color: #c4837e;
+          min-width: 36px;
+          text-align: right;
+        }
+
+        .sk-bar-track {
+          width: 100%;
+          height: 7px;
+          background: #fce4e1;
+          border-radius: 999px;
+          overflow: hidden;
+          position: relative;
+        }
+        .sk-bar-fill {
+          height: 100%;
+          border-radius: 999px;
+          background: linear-gradient(90deg,#fda4af,#f43f5e);
+          transform-origin: left;
+          transform: scaleX(0);
+          transition: transform 1.1s cubic-bezier(.22,1,.36,1);
+          position: relative;
+        }
+        /* Reflet lumineux sur la barre */
+        .sk-bar-fill::after {
+          content: '';
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 50%;
+          background: rgba(255,255,255,.35);
+          border-radius: 999px;
+        }
+        .sk-bar-fill.active {
+          transform: scaleX(1);
+        }
+
+        /* ── Animations d'entrée ── */
+        .sk-img-wrap  { opacity: 0; }
+        .sk-eyebrow   { opacity: 0; }
+        .sk-title     { opacity: 0; }
+        .sk-bar-row   { opacity: 0; }
+
+        .sk-section.visible .sk-img-wrap {
+          animation: sk-fadeLeft .8s cubic-bezier(.22,1,.36,1) both .1s;
+        }
+        .sk-section.visible .sk-eyebrow {
+          animation: sk-fadeRight .6s ease both .2s;
+        }
+        .sk-section.visible .sk-title {
+          animation: sk-fadeUp .7s cubic-bezier(.22,1,.36,1) both .3s;
+        }
+        .sk-section.visible .sk-bar-row {
+          animation: sk-fadeUp .5s ease both;
+        }
+        .sk-section.visible .sk-bar-row:nth-child(1){ animation-delay:.4s }
+        .sk-section.visible .sk-bar-row:nth-child(2){ animation-delay:.5s }
+        .sk-section.visible .sk-bar-row:nth-child(3){ animation-delay:.6s }
+        .sk-section.visible .sk-bar-row:nth-child(4){ animation-delay:.7s }
+        .sk-section.visible .sk-bar-row:nth-child(5){ animation-delay:.8s }
+        .sk-section.visible .sk-bar-row:nth-child(6){ animation-delay:.9s }
+
+        /* ── TABLETTE ≥ 640px ── */
+        @media (min-width: 640px) {
+          .sk-section { padding: 80px 40px; }
+          .sk-img-wrap { aspect-ratio: 3/2; }
+        }
+
+        /* ── DESKTOP ≥ 900px ── */
+        @media (min-width: 900px) {
+          .sk-section  { padding: 96px 40px; }
+          .sk-inner    { flex-direction: row; align-items: stretch; gap: 56px; }
+          .sk-img-wrap { width: 42%; flex-shrink: 0; aspect-ratio: unset; min-height: 460px; }
+          .sk-content  { padding-top: 8px; }
+        }
+
+        @media (min-width: 1200px) {
+          .sk-inner { max-width: 1100px; gap: 72px; }
+        }

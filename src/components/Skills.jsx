@@ -1,75 +1,98 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import photo from "../assets/desktop.jpg";
-
+import "../styles/Skills.css";
 const skills = [
-  { name: "Communication", value: 95 },
-  { name: "Organisation", value: 95 },
-  { name: "Canva", value: 90 },
-  { name: "Microsoft Office", value: 90 },
+  { name: "Communication",              value: 95 },
+  { name: "Organisation",               value: 95 },
+  { name: "Canva",                       value: 90 },
+  { name: "Microsoft Office",           value: 90 },
   { name: "Gestion des réseaux sociaux", value: 85 },
-  { name: "Relation client", value: 90 },
+  { name: "Relation client",            value: 90 },
 ];
 
-export default function Skills() {
-  const [animated, setAnimated] = useState(false);
 
+function useInView(threshold = 0.25) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setAnimated(true), 400);
-    return () => clearTimeout(timer);
-  }, []);
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
+}
+
+export default function Skills() {
+  const [sectionRef, inView] = useInView(0.15);
 
   return (
-    <section className="bg-[#faf8f6] py-16 px-8">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch gap-10">
+    <>
 
-        {/*  gauche  */}
-        <div className="w-[100%] md:w-[40%] rounded-2xl overflow-hidden">
-          <img
-            src={photo}
-            alt="Espace de travail"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <section id="competences"
+        ref={sectionRef}
+        className={`sk-section${inView ? " visible" : ""}`}
+      >
+      
+        <div className="sk-blob" />
+        <div className="sk-blob-2" />
 
-        {/*  droite */}
-        <div className="flex-1 flex flex-col justify-center">
-          <p className="uppercase tracking-[5px] text-[11px] font-semibold font-sans text-[#c4837e] mb-4">
-            Mes compétences
-          </p>
-           <h2
-            className="text-[clamp(28px,4vw,46px)] font-bold text-[#6b1e1e] leading-[1.15] mb-6"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-          >
-             Des compétences au service<br /> 
-            <span className="text-[#b07540]">de votre productivité</span>
-          </h2>
+        <div className="sk-inner">
 
-          <div className="flex flex-col gap-4">
-            {skills.map((skill, i) => (
-              <div key={skill.name} className="flex items-center gap-4">
-                <span className="text-sm font-sans  text-[#8a6050] w-44 flex-shrink-0">
-                  {skill.name}
-                </span>
+         
+          <div className="sk-img-wrap">
+            <img src={photo} alt="Espace de travail Alexandra" />
+            <div className="sk-img-overlay" />
 
-                <div className="flex-1 h-2 bg-pink-100 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-rose-400 rounded-full transition-all duration-1000 ease-out"
-                    style={{
-                      width: animated ? `${skill.value}%` : "0%",
-                      transitionDelay: `${i * 120}ms`,
-                    }}
-                  />
-                </div>
-
-                <span className="text-sm font-sans  text-[#8a6050] w-10 text-right  flex-shrink-0">
-                  {skill.value}%
-                </span>
+            <div className="sk-img-badge">
+              <div className="sk-img-badge-icon">✦</div>
+              <div className="sk-img-badge-text">
+                <strong>Expert VA</strong>
+                <span>Disponible dès maintenant</span>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* ── Contenu ── */}
+          <div className="sk-content">
+
+            <div className="sk-eyebrow">
+              <div className="sk-eyebrow-line" />
+              <p>Mes compétences</p>
+            </div>
+
+            <h2 className="sk-title">
+              Des compétences au service<br />
+              <em>de votre productivité</em>
+            </h2>
+
+            <div className="sk-bars">
+              {skills.map((skill, i) => (
+                <div key={skill.name} className="sk-bar-row">
+                  <div className="sk-bar-header">
+                    <span className="sk-bar-name">{skill.name}</span>
+                    <span className="sk-bar-pct">{skill.value}%</span>
+                  </div>
+                  <div className="sk-bar-track">
+                    <div
+                      className={`sk-bar-fill${inView ? " active" : ""}`}
+                      style={{
+                        width: `${skill.value}%`,
+                        transitionDelay: inView ? `${0.4 + i * 0.12}s` : "0s",
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
