@@ -1,14 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 
-
-
-
 const testimonials = [
   {
     name: "Marie L.",
     role: "Entrepreneure",
     company: "Studio ML",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    avatar: null,
     text: "Alexandra a été un vrai soutien pour mon business. Elle est professionnelle, réactive et toujours de bonne humeur.",
     stars: 5,
   },
@@ -16,7 +13,7 @@ const testimonials = [
     name: "Sophie R.",
     role: "Coach",
     company: "Sophie R. Coaching",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    avatar: null,
     text: "Grâce à Alexandra, j'ai pu me concentrer sur mon cœur de métier. Une créativité et une rigueur exemplaires.",
     stars: 5,
   },
@@ -24,7 +21,7 @@ const testimonials = [
     name: "Camille D.",
     role: "Consultante RH",
     company: "CD Consulting",
-    avatar: "https://randomuser.me/api/portraits/women/32.jpg",
+    avatar: null,
     text: "Un travail de qualité, livré dans les délais. Elle comprend rapidement les besoins et propose des solutions adaptées.",
     stars: 5,
   },
@@ -186,13 +183,16 @@ export default function Projects() {
       className="flex items-center gap-4 mb-8 anim-fade-up"
     >
       <div className="relative">
-        <img
-          src={t.avatar}
-          alt={t.name}
-          className="w-16 h-16 rounded-full object-cover border-2 border-pink-100"
-        />
+  <div
+    className="w-16 h-16 rounded-full border-2 border-pink-100 flex items-center justify-center text-white font-semibold text-lg"
+    style={{
+      background: "linear-gradient(135deg,#fb7185,#f43f5e)"
+    }}
+  >
+    {t.name.charAt(0)}
+  </div>
 
-        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-rose-400 border-2 border-white" />
+  <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 border-2 border-white" />
       </div>
 
       <div>
@@ -250,20 +250,23 @@ export default function Projects() {
 
     {/* Avatars */}
     <div className="flex justify-center items-center gap-3 mt-8">
-      {testimonials.map((item, i) => (
-        <img
-          key={i}
-          src={item.avatar}
-          alt={item.name}
-          onClick={() => handleSetActive(i)}
-          className={`w-10 h-10 rounded-full object-cover cursor-pointer transition-all duration-300 ${
-            active === i
-              ? "ring-2 ring-rose-400 ring-offset-2 scale-110"
-              : "opacity-70 hover:opacity-100"
-          }`}
-        />
-      ))}
-    </div>
+  {testimonials.map((item, i) => (
+    <button
+      key={i}
+      onClick={() => handleSetActive(i)}
+      className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-semibold transition-all duration-300 ${
+        active === i
+          ? "ring-2 ring-rose-400 ring-offset-2 scale-110"
+          : "opacity-70 hover:opacity-100"
+      }`}
+      style={{
+        background: "linear-gradient(135deg,#fb7185,#f43f5e)"
+      }}
+    >
+      {item.name.charAt(0)}
+    </button>
+  ))}
+</div>
 
     {/* Satisfaction */}
     <div className="mt-8 pt-8 border-t border-pink-100 text-center">
