@@ -4,8 +4,7 @@ const links = [
   { label: "Accueil", id: "accueil" },
   { label: "À propos", id: "apropos" },
   { label: "Services", id: "services" },
-  { label: "Compétences", id: "competences" },
-  { label: "Projets", id: "projet" },
+  { label: "Outils", id: "competences" },
   { label: "Témoignages", id: "projet" },
   { label: "Contact", id: "contact" },
 ];
@@ -62,7 +61,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <a
-            href="https://wa.me/VOTRE_NUMERO"
+            href="https://wa.me/+2610322063222"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center justify-center gap-2 h-[46px] px-5 rounded-2xl bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white text-[13px] font-medium transition-all duration-300 hover:-translate-y-0.5 shadow-[0_10px_30px_rgba(244,114,182,0.28)]"
@@ -130,7 +129,7 @@ export default function Navbar() {
 
           {/* Mobile CTA */}
           <a
-            href="https://wa.me/VOTRE_NUMERO"
+            href="https://wa.me/+2610322063222"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 flex items-center justify-center gap-3 h-[52px] rounded-2xl bg-gradient-to-r from-rose-400 to-rose-500 text-white font-medium text-[14px] shadow-[0_10px_25px_rgba(244,114,182,0.25)]"

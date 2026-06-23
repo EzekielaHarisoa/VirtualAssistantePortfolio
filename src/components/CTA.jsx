@@ -172,7 +172,7 @@ export default function CTA() {
           <div className={`flex flex-col gap-3 w-full lg:w-auto lg:min-w-[260px] ${inView ? "cta-fade-left cta-d3" : "opacity-0"}`}>
             {/* WhatsApp */}
             <a
-              href="https://wa.me/VOTRE_NUMERO"
+              href="https://wa.me/+2610322063222"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-btn-primary flex items-center justify-center gap-3 bg-white px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-semibold text-rose-500"
@@ -186,14 +186,14 @@ export default function CTA() {
 
             {/* Email */}
             <a
-              href="mailto:contact@alexandra-assistante.com"
+              href="mailto:alexandramahefasoa@gmail.com"
               className="cta-btn-secondary flex items-center justify-center gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-semibold text-white text-[14px] sm:text-[15px]"
               style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.4)" }}
             >
               <svg className="w-5 h-5 flex-shrink-0 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              contact@alexandra-assistante.com
+              alexandramahefasoa@gmail.com
             </a>
           </div>
 

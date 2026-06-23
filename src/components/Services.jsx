@@ -1,9 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Mail, CalendarDays, Headphones,
-  LayoutGrid, ClipboardList, Database,
+  Mail,
+  CalendarDays,
+  Headphones,
+  ClipboardList,
+  Database,
+  Receipt,
+  Users,
+  PenTool,
+  CheckSquare,
+  Share2,
 } from "lucide-react";
 import "../styles/Services.css";
+
 const services = [
   {
     icon: Mail,
@@ -30,7 +39,7 @@ const services = [
     tag: "Relation client",
   },
   {
-    icon: LayoutGrid,
+    icon: Share2,
     title: "Réseaux sociaux",
     desc: "Création de contenu engageant, planification et gestion de vos pages.",
     color: "rgba(253,216,243,.45)",
@@ -53,138 +62,141 @@ const services = [
     accent: "#c0392b",
     tag: "Données",
   },
+  {
+    icon: Receipt,
+    title: "Facturation Clients & Fournisseurs",
+    desc: "Création et gestion de vos factures, suivi des paiements et reporting.",
+    color: "rgba(255,228,230,.55)",
+    accent: "#c0392b",
+    tag: "Finances",
+  },
+  {
+    icon: CalendarDays,
+    title: "Organisation réunions et déplacements",
+    desc: "Planification de vos réunions, coordination des déplacements et gestion logistique.",
+    color: "rgba(255,228,230,.55)",
+    accent: "#c0392b",
+    tag: "Organisation",
+  },
+  {
+    icon: Users,
+    title: "Sourcing (utilisation des CRM)",
+    desc: "Identification de prospects, gestion de votre CRM et suivi des opportunités commerciales.",
+    color: "rgba(255,228,230,.55)",
+    accent: "#c0392b",
+    tag: "Sourcing",
+  },
+  {
+    icon: PenTool,
+    title: "Rédaction",
+    desc: "Rédaction de contenus variés : articles, newsletters, fiches produits, etc.",
+    color: "rgba(255,228,230,.55)",
+    accent: "#c0392b",
+    tag: "Rédaction",
+  },
+  {
+    icon: CheckSquare,
+    title: "Gestion de projet",
+    desc: "Planification, coordination et suivi de vos projets pour assurer leur succès.",
+    color: "rgba(255,228,230,.55)",
+    accent: "#c0392b",
+    tag: "Gestion de projet",
+  },
 ];
 
 function useInView(threshold = 0.1) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
       { threshold }
     );
-    obs.observe(el);
-    return () => obs.disconnect();
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
   }, [threshold]);
+
   return [ref, inView];
 }
 
 export default function Services() {
   const [sectionRef, inView] = useInView(0.08);
-  const [hovered, setHovered] = useState(null);
 
   return (
-    <>
+    <section
+      id="services"
+      ref={sectionRef}
+      className={`sv-section ${inView ? "visible" : ""}`}
+    >
+      <div className="sv-grid">
+        {services.map((service, i) => {
+          const Icon = service.icon;
 
-      <section id="services" ref={sectionRef} className={`sv-section${inView ? " visible" : ""}`}>
-
-        {/* Blobs déco */}
-        <div className="sv-blob-tr" />
-        <div className="sv-blob-bl" />
-
-        {/* ── Header ── */}
-        <div className="sv-header">
-          <div className="sv-eyebrow">
-            <div className="sv-eyebrow-line" />
-            <p>Mes services</p>
-          </div>
-
-          <div className="sv-heading-row">
-            <h2 className="sv-title">
-              Comment je peux <em>vous aider</em>
-            </h2>
-            <p className="sv-subtitle">
-              Des solutions sur-mesure pour vous libérer des tâches chronophages
-              et vous recentrer sur l&apos;essentiel.
-            </p>
-          </div>
-
-          <div className="sv-divider">
-            <div className="sv-divider-a" />
-            <div className="sv-divider-b" />
-            <div className="sv-divider-c" />
-          </div>
-        </div>
-
-        {/* ── Grid ── */}
-        <div className="sv-grid">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            return (
+          return (
+            <div key={`${service.title}-${i}`} className="sv-card">
               <div
-                key={service.title}
-                className="sv-card"
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
+                className="sv-card-bg"
+                style={{ background: service.color }}
+              />
+
+              <span
+                className="sv-card-num"
+                style={{ color: service.accent }}
               >
-                {/* Fond coloré */}
-                <div
-                  className="sv-card-bg"
-                  style={{ background: service.color }}
-                />
+                {String(i + 1).padStart(2, "0")}
+              </span>
 
-                {/* Numéro */}
-                <span
-                  className="sv-card-num"
+              <div
+                className="sv-icon-wrap"
+                style={{
+                  background: service.color,
+                  borderColor: `${service.accent}22`,
+                }}
+              >
+                <Icon
+                  size={20}
                   style={{ color: service.accent }}
-                >
-                  0{i + 1}
-                </span>
-
-                {/* Icône */}
-                <div
-                  className="sv-icon-wrap"
-                  style={{
-                    background: service.color,
-                    borderColor: `${service.accent}22`,
-                  }}
-                >
-                  <Icon size={20} style={{ color: service.accent }} strokeWidth={1.6} />
-                </div>
-
-                {/* Tag */}
-                <span
-                  className="sv-tag"
-                  style={{
-                    background: `${service.accent}14`,
-                    color: service.accent,
-                  }}
-                >
-                  {service.tag}
-                </span>
-
-                {/* Titre */}
-                <h3 className="sv-card-title">{service.title}</h3>
-
-                {/* Description */}
-                <p className="sv-card-desc">{service.desc}</p>
-
-                {/* Lien hover */}
-                <div className="sv-card-link">
-                  <span style={{ color: service.accent }}>En savoir plus</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                    stroke={service.accent} strokeWidth="2.5"
-                    strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-
-                {/* Barre déco bas */}
-                <div className="sv-card-bar">
-                  <div
-                    className="sv-card-bar-inner"
-                    style={{
-                      background: `linear-gradient(90deg,${service.accent},transparent)`,
-                    }}
-                  />
-                </div>
+                  strokeWidth={1.6}
+                />
               </div>
-            );
-          })}
-        </div>
-      </section>
-    </>
+
+              <span
+                className="sv-tag"
+                style={{
+                  background: `${service.accent}14`,
+                  color: service.accent,
+                }}
+              >
+                {service.tag}
+              </span>
+
+              <h3 className="sv-card-title">{service.title}</h3>
+
+              <p className="sv-card-desc">{service.desc}</p>
+
+              <div className="sv-card-bar">
+                <div
+                  className="sv-card-bar-inner"
+                  style={{
+                    background: `linear-gradient(90deg,${service.accent},transparent)`,
+                  }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }

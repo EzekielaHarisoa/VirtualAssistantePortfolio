@@ -142,11 +142,13 @@
           border: 1px solid rgba(236,221,216,.8);
           overflow: hidden;
           cursor: default;
-          opacity: 0;
           box-shadow: 0 2px 12px rgba(160,50,30,.05);
           transition: transform .3s cubic-bezier(.22,1,.36,1),
                       box-shadow .3s ease;
           will-change: transform;
+        }
+        .sv-section.visible .sv-card {
+            opacity: 1;
         }
 
         /* Stagger */

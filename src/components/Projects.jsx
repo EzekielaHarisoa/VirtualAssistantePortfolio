@@ -1,30 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 
-const baseProjects = [
-  {
-    title: "Gestion administrative",
-    description: "Organisation, suivi de dossiers, rédaction de documents professionnels.",
-    tag: "Admin",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
-    dot: "#e8a0a0",
-  },
-  {
-    title: "Gestion réseaux sociaux",
-    description: "Création de contenu, planning éditorial, animation de communauté.",
-    tag: "Social Media",
-    image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop",
-    dot: "#e8b880",
-  },
-  {
-    title: "Suivi & Reporting",
-    description: "Tableaux de bord, rapports hebdomadaires, analyse de performance.",
-    tag: "Reporting",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
-    dot: "#88b898",
-  },
-];
 
-const projects = [...baseProjects, ...baseProjects, ...baseProjects];
+
 
 const testimonials = [
   {
@@ -170,7 +147,7 @@ export default function Projects() {
         <div className="flex items-center gap-3 mb-3">
           <span className="w-8 h-px bg-rose-300" />
           <p className="uppercase tracking-[4px] text-[11px] font-semibold text-rose-400">
-            Projets & Témoignages
+            Témoignages
           </p>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -178,227 +155,127 @@ export default function Projects() {
             className="text-[clamp(26px,4vw,48px)] font-bold text-[#3a1010] leading-[1.1]"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
           >
-            Réalisations & retours <span className="italic text-rose-400">clients</span>
+             Retours <span className="italic text-rose-400">clients</span>
           </h2>
           <div
             className={`bg-white border border-pink-100 rounded-2xl px-5 py-3 text-center self-start sm:self-auto ${inView ? "anim-fade-up delay-2" : "opacity-0"}`}
             style={{ boxShadow: "0 2px 16px rgba(200,100,100,0.06)" }}
           >
             <p className="text-2xl font-bold text-rose-400 leading-none" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>3+</p>
-            <p className="text-[11px] text-gray-400 mt-0.5">Projets réalisés</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">Retours clients</p>
           </div>
         </div>
       </div>
 
       {/* ── Layout principal ── */}
-      <div className="flex flex-col lg:flex-row gap-0 min-h-[480px]">
+     {/* ── Témoignages ── */}
+<div
+  className={`max-w-4xl mx-auto px-5 sm:px-8 ${
+    inView ? "anim-fade-up delay-2" : "opacity-0"
+  }`}
+>
+  <div
+    className="bg-white rounded-[32px] border border-pink-100 p-8 sm:p-12"
+    style={{
+      boxShadow: "0 20px 60px rgba(210,120,120,.08)",
+    }}
+  >
+    {/* Avatar */}
+    <div
+      key={`avatar-${animKey}`}
+      className="flex items-center gap-4 mb-8 anim-fade-up"
+    >
+      <div className="relative">
+        <img
+          src={t.avatar}
+          alt={t.name}
+          className="w-16 h-16 rounded-full object-cover border-2 border-pink-100"
+        />
 
-        {/* ── GAUCHE : Témoignages ── */}
-        <div
-          className={`lg:w-[30%] px-5 sm:px-8 md:px-16 lg:px-10 flex flex-col justify-between gap-6 pb-10 lg:pb-0 ${inView ? "anim-fade-left delay-1" : "opacity-0"}`}
-        >
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-5 h-px bg-rose-300" />
-              <p className="uppercase tracking-[3px] text-[10px] font-semibold text-rose-400">Témoignages</p>
-            </div>
-
-            {/* Avatar + infos — re-animés à chaque changement */}
-            <div
-              key={`avatar-${animKey}`}
-              className="flex items-center gap-3 mb-5 anim-fade-up"
-            >
-              <div className="relative flex-shrink-0">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-pink-100 transition-transform duration-300 hover:scale-105"
-                />
-                <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-rose-400 rounded-full flex items-center justify-center border-2 border-white">
-                  <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-              </div>
-              <div>
-                <p className="text-sm font-bold text-[#3a1010]">{t.name}</p>
-                <p className="text-[11px] text-gray-400">{t.role}</p>
-                <p className="text-[11px] text-rose-400 font-medium">{t.company}</p>
-              </div>
-            </div>
-
-            <StarRating count={t.stars} />
-
-            {/* Citation — re-animée à chaque changement */}
-            <div key={`quote-${animKey}`} className="mt-3 anim-fade-up delay-1">
-              <span
-                className="text-[56px] leading-none text-rose-100 select-none block -mb-3"
-                style={{ fontFamily: "Georgia, serif" }}
-              >
-                "
-              </span>
-              <p
-                className="text-[14px] text-[#6b4040] leading-[1.85] italic"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "15px" }}
-              >
-                {t.text}
-              </p>
-            </div>
-          </div>
-
-          {/* Navigation dots */}
-          <div className="flex flex-col gap-3">
-            {testimonials.map((item, i) => (
-              <button
-                key={i}
-                onClick={() => handleSetActive(i)}
-                className="flex items-center gap-3 text-left group cursor-pointer"
-              >
-                <span
-                  className={`flex-shrink-0 w-1 rounded-full transition-all duration-500 ease-in-out ${
-                    i === active ? "h-8 bg-rose-400" : "h-4 bg-rose-200 group-hover:bg-rose-300"
-                  }`}
-                />
-                <div className={`transition-all duration-300 ${i === active ? "opacity-100 translate-x-0" : "opacity-40 group-hover:opacity-60"}`}>
-                  <p className="text-[12px] font-semibold text-[#3a1010]">{item.name}</p>
-                  <p className="text-[10px] text-gray-400">{item.role}</p>
-                </div>
-              </button>
-            ))}
-
-            {/* Stat rapide */}
-            <div className="mt-2 pt-4 border-t border-pink-100">
-              <div className="flex items-center gap-2 flex-wrap">
-                {testimonials.map((item, i) => (
-                  <img
-                    key={i}
-                    src={item.avatar}
-                    alt={item.name}
-                    onClick={() => handleSetActive(i)}
-                    className={`w-7 h-7 rounded-full border-2 border-white object-cover -ml-2 first:ml-0 cursor-pointer transition-transform duration-200 hover:scale-110 hover:z-10 ${
-                      i === active ? "ring-2 ring-rose-400 ring-offset-1" : ""
-                    }`}
-                    style={{ position: "relative" }}
-                  />
-                ))}
-                <p className="text-[11px] text-gray-400 ml-2">100% satisfaits</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Séparateur vertical */}
-        <div className="hidden lg:block w-px bg-pink-100 mx-2 self-stretch" />
-
-        {/* ── DROITE : Carrousel projets ── */}
-        <div
-          className={`lg:w-[70%] overflow-hidden flex flex-col justify-center ${inView ? "anim-fade-up delay-3" : "opacity-0"}`}
-        >
-          <div className="relative w-full overflow-hidden">
-            {/* Fondu bords */}
-            <div
-              className="absolute left-0 top-0 bottom-0 w-14 sm:w-20 z-10 pointer-events-none"
-              style={{ background: "linear-gradient(to right, #faf8f6 10%, transparent)" }}
-            />
-            <div
-              className="absolute right-0 top-0 bottom-0 w-14 sm:w-20 z-10 pointer-events-none"
-              style={{ background: "linear-gradient(to left, #faf8f6 10%, transparent)" }}
-            />
-
-            <div
-              ref={trackRef}
-              className="flex gap-4 sm:gap-5 w-max py-6 pl-4"
-              style={{ willChange: "transform" }}
-            >
-              {projects.map((project, i) => (
-                <div
-                  key={i}
-                  className="group relative bg-white rounded-[22px] overflow-hidden border border-pink-100/80 flex-shrink-0 flex flex-col"
-                  style={{
-                    width: "clamp(200px, 40vw, 260px)",
-                    boxShadow: "0 2px 20px rgba(200,100,100,0.06)",
-                    transition: "transform 0.35s ease, box-shadow 0.35s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-6px)";
-                    e.currentTarget.style.boxShadow = "0 12px 32px rgba(200,100,100,0.13)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 2px 20px rgba(200,100,100,0.06)";
-                  }}
-                >
-                  <div className="relative overflow-hidden h-40 sm:h-44">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
-                    />
-                    <div
-                      className="absolute bottom-0 left-0 right-0 h-14"
-                      style={{ background: "linear-gradient(to top, rgba(255,255,255,0.5), transparent)" }}
-                    />
-                    <span
-                      className="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full transition-all duration-200 group-hover:bg-white"
-                      style={{
-                        background: "rgba(255,255,255,0.88)",
-                        backdropFilter: "blur(6px)",
-                        color: "#c0392b",
-                        border: "0.5px solid rgba(200,100,100,0.2)",
-                      }}
-                    >
-                      {project.tag}
-                    </span>
-                    <span
-                      className="absolute top-3 right-3 w-6 h-6 text-[10px] font-bold rounded-full flex items-center justify-center"
-                      style={{
-                        background: "rgba(255,255,255,0.88)",
-                        backdropFilter: "blur(6px)",
-                        color: "#c0392b",
-                        border: "0.5px solid rgba(200,100,100,0.2)",
-                      }}
-                    >
-                      {String((i % 3) + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <div className="p-4 flex flex-col flex-1">
-                    <span className="w-2 h-2 rounded-full mb-2 block transition-transform duration-300 group-hover:scale-125" style={{ background: project.dot }} />
-                    <h3
-                      className="font-bold text-[15px] text-[#3a1010] mb-1.5 leading-tight"
-                      style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-                    >
-                      {project.title}
-                    </h3>
-                    <p className="text-[11.5px] text-[#9a7070] leading-[1.7] flex-1">{project.description}</p>
-                    <div
-                      className="flex items-center justify-between mt-3 pt-3"
-                      style={{ borderTop: "0.5px solid #f5e0e0" }}
-                    >
-                      <div className="flex gap-1 items-center">
-                        <span className="w-4 h-1 rounded-full bg-rose-300 transition-all duration-300 group-hover:w-5" />
-                        <span className="w-2.5 h-1 rounded-full bg-rose-200" />
-                        <span className="w-1.5 h-1 rounded-full bg-rose-100" />
-                      </div>
-                      <button className="flex items-center gap-1 text-[10px] font-semibold text-rose-400 hover:text-rose-600 transition-colors group/btn">
-                        Voir plus
-                        <span
-                          className="w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-200 group-hover/btn:translate-x-0.5"
-                          style={{ background: "#fce8e8" }}
-                        >
-                          <svg className="w-2 h-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-rose-400 border-2 border-white" />
       </div>
+
+      <div>
+        <h3 className="text-lg font-bold text-[#3a1010]">
+          {t.name}
+        </h3>
+
+        <p className="text-sm text-gray-400">
+          {t.role}
+        </p>
+
+        <p className="text-sm font-medium text-rose-400">
+          {t.company}
+        </p>
+      </div>
+    </div>
+
+    {/* Étoiles */}
+    <StarRating count={t.stars} />
+
+    {/* Citation */}
+    <div key={`quote-${animKey}`} className="mt-6 anim-fade-up delay-1">
+      <span
+        className="block text-[70px] leading-none text-rose-100 -mb-5"
+        style={{ fontFamily: "Georgia, serif" }}
+      >
+        "
+      </span>
+
+      <p
+        className="text-[#6b4040] italic leading-[2]"
+        style={{
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: "20px",
+        }}
+      >
+        {t.text}
+      </p>
+    </div>
+
+    {/* Navigation */}
+    <div className="flex justify-center gap-4 mt-10">
+      {testimonials.map((item, i) => (
+        <button
+          key={i}
+          onClick={() => handleSetActive(i)}
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            active === i
+              ? "bg-rose-400 scale-125"
+              : "bg-rose-200 hover:bg-rose-300"
+          }`}
+        />
+      ))}
+    </div>
+
+    {/* Avatars */}
+    <div className="flex justify-center items-center gap-3 mt-8">
+      {testimonials.map((item, i) => (
+        <img
+          key={i}
+          src={item.avatar}
+          alt={item.name}
+          onClick={() => handleSetActive(i)}
+          className={`w-10 h-10 rounded-full object-cover cursor-pointer transition-all duration-300 ${
+            active === i
+              ? "ring-2 ring-rose-400 ring-offset-2 scale-110"
+              : "opacity-70 hover:opacity-100"
+          }`}
+        />
+      ))}
+    </div>
+
+    {/* Satisfaction */}
+    <div className="mt-8 pt-8 border-t border-pink-100 text-center">
+      <p className="text-sm text-gray-400">
+        <span className="font-semibold text-rose-400">
+          100%
+        </span>{" "}
+        de satisfaction client
+      </p>
+    </div>
+  </div>
+</div>
 
       {/* Séparateur */}
       <div

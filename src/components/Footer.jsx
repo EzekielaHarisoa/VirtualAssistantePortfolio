@@ -50,21 +50,21 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-5">
 
               <a
-                href="#"
+                href="https://www.instagram.com/alexendrahh?igsh=MWlqNDc3YXNudjdleg=="
                 className="w-11 h-11 rounded-2xl bg-white/10 hover:bg-white hover:text-rose-600 border border-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:scale-110"
               >
                 <Instagram className="w-5 h-5" />
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com/in/alexandraav?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                 className="w-11 h-11 rounded-2xl bg-white/10 hover:bg-white hover:text-rose-600 border border-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:scale-110"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
 
               <a
-                href="#"
+                href="https://wa.me/+2610322063222"
                 className="w-11 h-11 rounded-2xl bg-white/10 hover:bg-white hover:text-green-500 border border-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:scale-110"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="pt-6 flex flex-col md:flex-row items-center justify-center animate-[fadeUp_1.3s_ease]">
 
           <p className="text-[13px] text-white/60 text-center">
-            © 2025 Alexandra — Tous droits réservés.
+            © 2026 Alexandra — Tous droits réservés.
           </p>
 
         </div>

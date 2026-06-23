@@ -2,12 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import photo from "../assets/desktop.jpg";
 import "../styles/Skills.css";
 const skills = [
-  { name: "Communication",              value: 95 },
-  { name: "Organisation",               value: 95 },
-  { name: "Canva",                       value: 90 },
-  { name: "Microsoft Office",           value: 90 },
+  { name: "Trello",              value: 95 },
+  { name: "Google Work Space (Gmail, Docs, Sheets, Drive, Calendar)",        value: 95 },
+  { name: "Canva, Cupcut ",                       value: 90 },
+  { name: "Notion",           value: 90 },
   { name: "Gestion des réseaux sociaux", value: 85 },
-  { name: "Relation client",            value: 90 },
+  { name: "Meta Business ",            value: 96 },
+  { name: "Microsoft Office (Word, Excel, PowerPoint, Outlook)",            value: 80 },
+  { name: "Slack, Discord",            value: 90 },
+  { name: "Zoom & Google meet",            value: 90 },
+
 ];
 
 
@@ -62,12 +66,12 @@ export default function Skills() {
 
             <div className="sk-eyebrow">
               <div className="sk-eyebrow-line" />
-              <p>Mes compétences</p>
+              <p>Mes outils</p>
             </div>
 
             <h2 className="sk-title">
-              Des compétences au service<br />
-              <em>de votre productivité</em>
+              Des outils pour booster<br />
+              <em>votre productivité</em>
             </h2>
 
             <div className="sk-bars">
