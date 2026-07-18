@@ -62,11 +62,10 @@ export default function Hero() {
 
         <p className="h-greeting">Bonjour, je suis</p>
         <h1 className="h-name">Alexandra</h1>
-        <h2 className="h-subtitle">Assistante virtuelle pour entrepreneurs débordés</h2>
+        <h2 className="h-subtitle">Bras droit stratégique & assistante virtuelle des entrepreneurs qui refusent de tout porter seuls
+</h2>
         <p className="h-desc">
-          Mails, agenda, suivi client, tâches répétitives — je m&apos;occupe de
-          l&apos;administratif pendant que vous vous concentrez sur ce qui fait
-          avancer votre entreprise.
+         Je pilote vos projets, j'anticipe les blocages, et je porte une partie de la charge mentale pour que vous puissiez enfin vous concentrer sur ce qui compte vraiment : faire grandir votre business.
         </p>
 
         <div className="h-btns">
@@ -79,10 +78,7 @@ export default function Hero() {
             </span>
           </button>
 
-          <a href="https://drive.google.com/file/d/1NQVOybbsA2dYSI4IYKYrOBY_GxJdqFBr/view?usp=drivesdk" download className="h-cv-link">
-            <Download size={14} />
-            Télécharger mon CV
-          </a>
+         
         </div>
 
         <div className="h-stats">

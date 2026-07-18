@@ -139,6 +139,18 @@ export default function Services() {
       ref={sectionRef}
       className={`sv-section ${inView ? "visible" : ""}`}
     >
+      <div className="sv-eyebrow">
+              <div className="sv-eyebrow-line" />
+              <p>Mes services</p>
+            </div>
+
+            <h2 className="sv-title">
+                Des services adaptés à vos besoins
+            </h2>
+            <div className="sv-divider">
+              <div className="sv-divider-bar" />
+              <div className="sv-divider-dot" />
+            </div>
       <div className="sv-grid">
         {services.map((service, i) => {
           const Icon = service.icon;

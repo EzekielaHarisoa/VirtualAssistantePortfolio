@@ -4,13 +4,13 @@ import mimibien from "../assets/mimibien.jpeg";
 import "../styles/About.css";
 const traits = [
   { icon: ShieldCheck,       label: "Discrétion & Confidentialité" },
-  { icon: SlidersHorizontal, label: "Organisation & Rigueur"        },
-  { icon: MessageCircle,     label: "Communication claire"          },
+  { icon: SlidersHorizontal, label: "Pilotage stratégique ·"        },
+  { icon: MessageCircle,     label: "Anticipation des blocages"          },
 ];
 
 const checklist = [
   "Maîtrise des outils Google Workspace & Notion",
-  "Expérience avec des clients internationaux",
+  "Expérience avec des clients internationaux(français / anglais)",
   "Totale confidentialité garantie",
 ];
 
@@ -82,8 +82,10 @@ export default function About() {
             </div>
 
             <h2 className="ab-title">
-              Organisée, fiable et<br />
-              <em>dévouée à votre réussite</em>
+              Un vrai bras droit  pas une exécutante de plus
+
+              <br />
+              <em>Organisée, fiable et dévouée à votre réussite</em>
             </h2>
 
             <div className="ab-divider">
@@ -92,13 +94,15 @@ export default function About() {
             </div>
 
             <p className="ab-para ab-para-1">
-              Passionnée par l&apos;organisation, la communication et le support
-              administratif, j&apos;accompagne les entrepreneurs et les équipes dans
-              l&apos;optimisation de leur quotidien.
+             Je ne me contente pas d'exécuter une liste de tâches.
+             Mon rôle est de repérer ce qui bloque avant que vous ne le voyiez,
+              de piloter vos projets du début à la fin, et de porter une partie de la charge mentale qui, souvent, repose uniquement sur vous.
+
             </p>
             <p className="ab-para ab-para-2">
-              Mon objectif est simple : vous faire gagner du temps et vous offrir
-              une tranquillité d&apos;esprit en gérant efficacement vos tâches.
+             Mon objectif : un business piloté, pas subi, une organisation qui tient,
+              même quand vous n'êtes pas derrière chaque détail.
+
             </p>
 
             <ul className="ab-checklist">

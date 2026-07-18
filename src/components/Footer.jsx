@@ -34,9 +34,7 @@ export default function Footer() {
             </p>
 
             <p className="text-[14px] leading-[1.9] text-white/70 animate-[fadeUp_1.2s_ease]">
-              Assistance administrative moderne, organisation,
-              gestion des réseaux sociaux et accompagnement digital
-              pour entrepreneurs et entreprises.
+             Bras droit stratégique des entrepreneurs qui refusent de tout porter seuls, pilotage de projets, organisation, et un business piloté, pas subi.
             </p>
           </div>
 
