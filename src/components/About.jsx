@@ -9,7 +9,6 @@ const traits = [
 ];
 
 const checklist = [
-  "Disponible 5j/7, réactive et ponctuelle",
   "Maîtrise des outils Google Workspace & Notion",
   "Expérience avec des clients internationaux",
   "Totale confidentialité garantie",
